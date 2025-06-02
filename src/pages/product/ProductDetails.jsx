@@ -12,13 +12,12 @@ import SocialShare from '../../components/social/SocialShare';
 import SimilarProducts from '../../components/product/SimilarProducts';
 import { FaCheck, FaShoppingCart } from 'react-icons/fa';
 
-// حالات الزر المحددة مسبقًا
+
 const BUTTON_STATES = {
   DEFAULT: { text: 'Add to Cart', className: 'bg-[#465542] hover:bg-[#3b482e]' },
   ADDED: { text: 'Added!', className: 'bg-[#C2B823] cursor-default text-[#465542]' },
   IN_CART: { text: 'Remove from Cart', className: 'bg-[#DA2B50] hover:bg-[#a6213f]' }
 };
-
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +29,6 @@ const ProductDetails = () => {
   const [buttonState, setButtonState] = useState('DEFAULT');
   const [activeTab, setActiveTab] = useState('description');
 
-  // تحديث حالة الزر عند تغير حالة السلة
   useEffect(() => {
     if (buttonState !== 'ADDED') {
       setButtonState(isInCart ? 'IN_CART' : 'DEFAULT');
@@ -155,21 +153,21 @@ const handleAddToCart = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 sm:mt-6">
-            <button
-        onClick={handleAddToCart}
-        className={`flex-1 text-white py-2 sm:py-3 rounded-lg transition-colors active:scale-95 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base ${BUTTON_STATES[buttonState].className}`}
-        disabled={buttonState === 'ADDED'}
-      >
-        {buttonState === 'ADDED' ? (
-          <>
-            <FaCheck size={14} /> {BUTTON_STATES[buttonState].text}
-          </>
-        ) : (
-          <>
-            <FaShoppingCart size={14} /> {BUTTON_STATES[buttonState].text}
-          </>
-        )}
-      </button>
+<button
+  onClick={handleAddToCart}
+  className={`flex-1 text-white py-2 sm:py-3 rounded-lg transition-colors active:scale-95 flex items-center justify-center gap-1 sm:gap-2 text-sm sm:text-base ${BUTTON_STATES[buttonState].className}`}
+  disabled={buttonState === 'ADDED'}
+>
+  {buttonState === 'ADDED' ? (
+    <>
+      <FaCheck size={14} /> {BUTTON_STATES[buttonState].text}
+    </>
+  ) : (
+    <>
+      <FaShoppingCart size={14} /> {BUTTON_STATES[buttonState].text}
+    </>
+  )}
+</button>
             <button
               onClick={handleBuyNow}
               className={`flex-1 ${darkMode ? 'bg-indigo-500 hover:bg-indigo-600' : 'bg-indigo-600 hover:bg-indigo-700'

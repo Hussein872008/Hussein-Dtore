@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { clearCart } from '../../redux/slices/cartSlice';
+import { clearCart, loadCartFromStorage } from '../../redux/slices/cartSlice';
 import CartItem from '../../components/cart/CartItem';
 import {
   selectCartItems,
@@ -31,7 +31,12 @@ export default function Cart() {
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
+    // تحميل السلة من localStorage عند التحميل الأولي
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      dispatch(loadCartFromStorage(JSON.parse(savedCart)));
+    }
+  }, [dispatch]);
 
   const handleClearCart = () => setShowClearConfirm(true);
 

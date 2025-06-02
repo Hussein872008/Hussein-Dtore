@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// الحالة المبدئية تحمّل من localStorage إذا كانت موجودة
 const initialState = {
   cartItems: [],
   totalPrice: 0,
@@ -66,6 +67,11 @@ const cartSlice = createSlice({
         0
       );
     },
+
+    // إضافة رد فعل لتحميل السلة من localStorage
+    loadCartFromStorage: (state, action) => {
+      return action.payload;
+    }
   },
 });
 
@@ -77,6 +83,7 @@ export const {
   updateQuantity,
   clearCart,
   calculateTotal,
+  loadCartFromStorage,
 } = cartSlice.actions;
 
 export const selectCartItems = (state) => state.cart.cartItems;

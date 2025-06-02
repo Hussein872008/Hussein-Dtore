@@ -349,34 +349,42 @@ export default function Navbar() {
         )}
       </nav>
 
-      {showLogoutModal && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+{showLogoutModal && (
+  <div
+    role="dialog"
+    aria-modal="true"
+    className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+  >
+    <div
+      className={`rounded-md p-6 max-w-sm mx-auto ${darkMode ? 'bg-[#2D2D2D] text-[#F5F2F4]' : 'bg-white text-[#465542]'}`}
+    >
+      <h2 className="text-lg font-semibold mb-4">Confirm Logout</h2>
+      <p className={`mb-6 ${darkMode ? 'text-[#D1D1D1]' : 'text-[#7a7779]'}`}>Are you sure you want to log out?</p>
+      <div className="flex justify-end gap-4">
+        <button
+          onClick={cancelLogout}
+          className={`px-4 py-2 rounded border transition ${
+            darkMode
+              ? 'border-[#3D3D3D] text-[#F5F2F4] hover:bg-[#3D3D3D]'
+              : 'border-gray-300 text-[#465542] hover:bg-gray-100'
+          }`}
         >
-          <div
-            className={`bg-white rounded-md p-6 max-w-sm mx-auto ${darkMode ? 'bg-[#1A1A1A] text-[#F5F2F4]' : 'bg-white text-[#465542]'}`}
-          >
-            <h2 className="text-lg font-semibold mb-4">Confirm Logout</h2>
-            <p className="mb-6">Are you sure you want to log out?</p>
-            <div className="flex justify-end gap-4">
-              <button
-                onClick={cancelLogout}
-                className="px-4 py-2 border border-gray-400 rounded hover:bg-gray-100"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmLogout}
-                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          Cancel
+        </button>
+        <button
+          onClick={confirmLogout}
+          className={`px-4 py-2 rounded transition ${
+            darkMode
+              ? 'bg-[#DA2B50] text-white hover:bg-[#a6213f]'
+              : 'bg-[#DA2B50] text-white hover:bg-[#a6213f]'
+          }`}
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, selectCartItems } from '../../redux/slices/cartSlice';
 import { addFavorite, removeFavorite } from '../../redux/slices/favoritesSlice';
@@ -18,12 +18,22 @@ const ProductCard = ({ product, isLoading, showFavoriteButton = true, darkMode =
   const { user } = useAuth();
 
   const isFavorite = favorites?.some(item => item?.id === product?.id) || false;
-  const isInCart = cartItems?.some(item => item?.product?.id === product?.id) || false;
-
-  const [buttonText, setButtonText] = useState(isInCart ? 'Remove from Cart' : 'Add to Cart');
-  const [buttonState, setButtonState] = useState(isInCart ? 'inCart' : 'default');
+  const [isInCart, setIsInCart] = useState(false);
+  const [buttonText, setButtonText] = useState('Add to Cart');
+  const [buttonState, setButtonState] = useState('default');
   const [isHovering, setIsHovering] = useState(false);
   const [imgError, setImgError] = useState(false);
+
+useEffect(() => {
+  const inCart = cartItems.some(item => item.id === product.id);
+  setIsInCart(inCart);
+
+  if (buttonState !== 'added') {
+    setButtonText(inCart ? 'Remove from Cart' : 'Add to Cart');
+    setButtonState(inCart ? 'inCart' : 'default');
+  }
+}, [cartItems, product.id]);
+
 
   const toggleFavorite = (e) => {
     e.preventDefault();

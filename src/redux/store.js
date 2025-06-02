@@ -6,20 +6,32 @@ import favoritesReducer from '../redux/slices/favoritesSlice';
 import { favoritesMiddleware } from '../redux/slices/favoritesSlice';
 import themeReducer from '../redux/slices/themeSlice';
 
-
-const localStorageMiddleware = (store) => (next) => (action) => {
+// Middleware لحفظ السلة في localStorage
+const cartMiddleware = (store) => (next) => (action) => {
   const result = next(action);
   if (action.type?.startsWith('cart/')) {
-    console.log('Cart action detected, updating localStorage...');
     try {
       const cartState = store.getState().cart;
       localStorage.setItem('cart', JSON.stringify(cartState));
-      console.log('LocalStorage updated successfully');
     } catch (e) {
       console.error('Failed to save cart to localStorage', e);
     }
   }
   return result;
+};
+
+// دالة لتحميل الحالة المبدئية من localStorage
+const loadCartState = () => {
+  try {
+    const serializedState = localStorage.getItem('cart');
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.error('Failed to load cart from localStorage', e);
+    return undefined;
+  }
 };
 
 export const store = configureStore({
@@ -29,8 +41,10 @@ export const store = configureStore({
     cart: cartReducer,
     favorites: favoritesReducer,
     theme: themeReducer,
-
+  },
+  preloadedState: {
+    cart: loadCartState() || { cartItems: [], totalPrice: 0 }
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localStorageMiddleware, favoritesMiddleware),
+    getDefaultMiddleware().concat(cartMiddleware, favoritesMiddleware),
 });
