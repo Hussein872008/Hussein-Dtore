@@ -108,18 +108,18 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`max-w-3xl lg:max-w-6xl mx-auto p-8 rounded-2xl shadow-xl mt-12 mb-12 transition-colors duration-300 ${
+      className={`max-w-3xl mx-4 sm:mx-6 md:mx-8 lg:max-w-6xl lg:mx-auto p-4 sm:p-6 md:p-8 rounded-2xl shadow-xl my-8 sm:my-10 md:my-12 transition-colors duration-300 ${
         darkMode ? themeStyles.container.dark : themeStyles.container.light
       }`}
     >
       <motion.div 
-        className="text-center mb-10"
+        className="text-center mb-6 sm:mb-8 md:mb-10"
         initial={{ y: -20 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.4 }}
       >
         <motion.h2 
-          className={`text-4xl font-extrabold mb-3 tracking-wide transition-colors duration-300 ${
+          className={`text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2 sm:mb-3 tracking-wide transition-colors duration-300 ${
             darkMode ? themeStyles.text.dark : themeStyles.text.light
           }`}
           initial={{ opacity: 0 }}
@@ -129,7 +129,7 @@ const Contact = () => {
           Contact Us
         </motion.h2>
         <motion.p 
-          className={`max-w-xl mx-auto transition-colors duration-300 ${
+          className={`max-w-xl mx-auto text-sm sm:text-base transition-colors duration-300 ${
             darkMode ? themeStyles.subtext.dark : themeStyles.subtext.light
           }`}
           initial={{ opacity: 0 }}
@@ -140,9 +140,9 @@ const Contact = () => {
         </motion.p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
         <motion.div 
-          className={`rounded-xl shadow-lg p-8 flex flex-col justify-center space-y-8 transition-colors duration-300 ${
+          className={`rounded-xl shadow-lg p-6 sm:p-8 flex flex-col justify-center space-y-6 sm:space-y-8 transition-colors duration-300 ${
             darkMode ? themeStyles.card.dark : themeStyles.card.light
           }`}
           initial={{ x: -50, opacity: 0 }}
@@ -150,33 +150,33 @@ const Contact = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <motion.h3 
-            className={`text-2xl font-semibold border-b-2 border-[#C2B823] pb-3 transition-colors duration-300 ${
+            className={`text-xl sm:text-2xl font-semibold border-b-2 border-[#C2B823] pb-2 sm:pb-3 transition-colors duration-300 ${
               darkMode ? themeStyles.text.dark : themeStyles.text.light
             }`}
           >
             Contact Information
           </motion.h3>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <motion.div 
-              className="flex items-center space-x-5"
+              className="flex items-center space-x-3 sm:space-x-5"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
               <motion.div 
-                className="bg-[#C2B823] text-white p-4 rounded-full shadow-md"
+                className="bg-[#C2B823] text-white p-3 sm:p-4 rounded-full shadow-md"
                 whileHover={{ scale: 1.1 }}
               >
-                <FaEnvelope className="text-2xl" />
+                <FaEnvelope className="text-xl sm:text-2xl" />
               </motion.div>
               <div>
-                <h4 className={`font-semibold text-lg transition-colors duration-300 ${
+                <h4 className={`font-semibold text-base sm:text-lg transition-colors duration-300 ${
                   darkMode ? themeStyles.text.dark : themeStyles.text.light
                 }`}>
                   Email
                 </h4>
-                <p className={`text-sm select-text cursor-text transition-colors duration-300 ${
+                <p className={`text-xs sm:text-sm select-text cursor-text transition-colors duration-300 ${
                   darkMode ? themeStyles.subtext.dark : themeStyles.subtext.light
                 }`}>
                   husseinabdalla424@gamil.com
@@ -185,24 +185,24 @@ const Contact = () => {
             </motion.div>
 
             <motion.div 
-              className="flex items-center space-x-5"
+              className="flex items-center space-x-3 sm:space-x-5"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
               <motion.div 
-                className="bg-[#C2B823] text-white p-4 rounded-full shadow-md"
+                className="bg-[#C2B823] text-white p-3 sm:p-4 rounded-full shadow-md"
                 whileHover={{ scale: 1.1 }}
               >
-                <FaComment className="text-2xl" />
+                <FaComment className="text-xl sm:text-2xl" />
               </motion.div>
               <div>
-                <h4 className={`font-semibold text-lg transition-colors duration-300 ${
+                <h4 className={`font-semibold text-base sm:text-lg transition-colors duration-300 ${
                   darkMode ? themeStyles.text.dark : themeStyles.text.light
                 }`}>
                   Customer Support
                 </h4>
-                <p className={`text-sm transition-colors duration-300 ${
+                <p className={`text-xs sm:text-sm transition-colors duration-300 ${
                   darkMode ? themeStyles.subtext.dark : themeStyles.subtext.light
                 }`}>
                   Available 24/7 for any inquiries
@@ -220,25 +220,25 @@ const Contact = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              className={`text-center p-10 rounded-xl shadow-lg transition-colors duration-300 ${
+              className={`text-center p-6 sm:p-8 md:p-10 rounded-xl shadow-lg transition-colors duration-300 ${
                 darkMode ? themeStyles.card.dark : themeStyles.card.light
               }`}
             >
               <motion.div 
-                className={`p-5 rounded-lg mb-6 shadow-inner ${
+                className={`p-4 sm:p-5 rounded-lg mb-4 sm:mb-6 shadow-inner ${
                   darkMode ? 'bg-green-900 text-green-200' : 'bg-green-100 text-green-700'
                 }`}
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
               >
-                <h3 className="text-2xl font-semibold mb-3">Thank You!</h3>
-                <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Thank You!</h3>
+                <p className="text-sm sm:text-base">Your message has been sent successfully. We'll get back to you soon.</p>
               </motion.div>
               <motion.button
                 onClick={() => setSubmitted(false)}
                 className={`inline-block ${
                   darkMode ? 'bg-[#3b482e] hover:bg-[#465542]' : 'bg-[#465542] hover:bg-[#3b482e]'
-                } text-white font-semibold py-3 px-8 rounded-lg transition-all shadow-lg hover:shadow-xl`}
+                } text-white font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition-all shadow-lg hover:shadow-xl text-sm sm:text-base`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -249,7 +249,7 @@ const Contact = () => {
             <motion.form
               key="contact-form"
               onSubmit={handleSubmit}
-              className={`space-y-6 rounded-xl shadow-lg p-8 transition-colors duration-300 ${
+              className={`space-y-4 sm:space-y-6 rounded-xl shadow-lg p-6 sm:p-8 transition-colors duration-300 ${
                 darkMode ? themeStyles.card.dark : themeStyles.card.light
               }`}
               initial={{ x: 50, opacity: 0 }}
@@ -261,14 +261,14 @@ const Contact = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
+                <label className={`block text-xs sm:text-sm font-medium mb-1 sm:mb-2 transition-colors duration-300 ${
                   darkMode ? themeStyles.text.dark : themeStyles.text.light
                 }`}>
                   Name
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <FaUser className={`text-lg transition-colors duration-300 ${
+                  <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
+                    <FaUser className={`text-base sm:text-lg transition-colors duration-300 ${
                       darkMode ? themeStyles.subtext.dark : themeStyles.subtext.light
                     }`} />
                   </div>
@@ -277,9 +277,9 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full pl-12 pr-4 py-3 border ${
+                    className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border ${
                       errors.name ? 'border-red-500' : (darkMode ? themeStyles.input.dark : themeStyles.input.light)
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C2B823] transition bg-transparent ${
+                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C2B823] transition bg-transparent text-sm sm:text-base ${
                       darkMode ? 'text-white placeholder-gray-400' : 'text-[#465542] placeholder-[#A5A1A4]'
                     }`}
                     placeholder="Your full name"
@@ -300,14 +300,14 @@ const Contact = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
+                <label className={`block text-xs sm:text-sm font-medium mb-1 sm:mb-2 transition-colors duration-300 ${
                   darkMode ? themeStyles.text.dark : themeStyles.text.light
                 }`}>
                   Email
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <FaEnvelope className={`text-lg transition-colors duration-300 ${
+                  <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
+                    <FaEnvelope className={`text-base sm:text-lg transition-colors duration-300 ${
                       darkMode ? themeStyles.subtext.dark : themeStyles.subtext.light
                     }`} />
                   </div>
@@ -316,9 +316,9 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full pl-12 pr-4 py-3 border ${
+                    className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border ${
                       errors.email ? 'border-red-500' : (darkMode ? themeStyles.input.dark : themeStyles.input.light)
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C2B823] transition bg-transparent ${
+                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C2B823] transition bg-transparent text-sm sm:text-base ${
                       darkMode ? 'text-white placeholder-gray-400' : 'text-[#465542] placeholder-[#A5A1A4]'
                     }`}
                     placeholder="example@email.com"
@@ -339,7 +339,7 @@ const Contact = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                <label className={`block text-sm font-medium mb-2 transition-colors duration-300 ${
+                <label className={`block text-xs sm:text-sm font-medium mb-1 sm:mb-2 transition-colors duration-300 ${
                   darkMode ? themeStyles.text.dark : themeStyles.text.light
                 }`}>
                   Message
@@ -348,10 +348,10 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows={6}
-                  className={`w-full px-4 py-3 border ${
+                  rows={4}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-3 border ${
                     errors.message ? 'border-red-500' : (darkMode ? themeStyles.input.dark : themeStyles.input.light)
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C2B823] transition resize-none bg-transparent ${
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C2B823] transition resize-none bg-transparent text-sm sm:text-base ${
                     darkMode ? 'text-white placeholder-gray-400' : 'text-[#465542] placeholder-[#A5A1A4]'
                   }`}
                   placeholder="Write your message here..."
@@ -369,7 +369,7 @@ const Contact = () => {
               <motion.button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full flex justify-center items-center gap-3 bg-gradient-to-r from-[#C2B823] to-[#DA2B50] hover:from-[#b1ad19] hover:to-[#c02943] text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-transform transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed`}
+                className={`w-full flex justify-center items-center gap-2 sm:gap-3 bg-gradient-to-r from-[#C2B823] to-[#DA2B50] hover:from-[#b1ad19] hover:to-[#c02943] text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl shadow-lg transition-transform transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed text-sm sm:text-base`}
                 aria-busy={isLoading}
                 whileHover={!isLoading ? { scale: 1.02 } : {}}
                 whileTap={!isLoading ? { scale: 0.98 } : {}}
@@ -379,7 +379,7 @@ const Contact = () => {
               >
                 {isLoading ? (
                   <>
-                    <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
@@ -387,7 +387,7 @@ const Contact = () => {
                   </>
                 ) : (
                   <>
-                    <FaPaperPlane /> Send Message
+                    <FaPaperPlane className="text-sm sm:text-base" /> Send Message
                   </>
                 )}
               </motion.button>

@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProductGrid from '../components/product/ProductGrid';
+import { FaArrowUp } from 'react-icons/fa';
 
 const Home = () => {
   const { hash } = useLocation();
   const darkMode = useSelector((state) => state.theme.darkMode);
+  const [isVisible, setIsVisible] = useState(false);
 
   const mode = darkMode ? 'dark' : 'light';
 
@@ -36,6 +38,28 @@ const Home = () => {
     }
   }, [hash]);
 
+  // Check scroll position
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className={`min-h-screen p-6 ${themeStyles.transition} ${themeStyles.container[mode]}`}>
       <header className={`mb-8 text-center ${themeStyles.transition}`}>
@@ -50,6 +74,19 @@ const Home = () => {
       <section id="products">
         <ProductGrid />
       </section>
+
+      {/* Back to Top Button - Mobile Only */}
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className={`fixed bottom-6 right-6 p-3 rounded-full shadow-lg md:hidden ${
+            darkMode ? 'bg-yellowAccent text-darkText' : 'bg-darkGreen text-primaryBg'
+          }`}
+          aria-label="Back to top"
+        >
+          <FaArrowUp size={20} />
+        </button>
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaShoppingCart, FaUser, FaHeart, FaSignOutAlt, FaSearch, FaMoon, FaSun } from 'react-icons/fa';
+import { FaShoppingCart, FaUser, FaHeart, FaSignOutAlt, FaSearch, FaMoon, FaSun, FaEnvelope } from 'react-icons/fa';
 import SearchBar from '../search/SearchBar';
 import { useAuth } from '../../context/authContext';
 import { selectCartItems } from '../../redux/slices/cartSlice';
@@ -26,7 +26,7 @@ export default function Navbar() {
   const uniqueProductsCount = cartItems.length;
   const favoritesCount = favorites.length;
 
-  const showSearchBar = !['/cart', '/checkout', "/favorites"].includes(pathname);
+  const showSearchBar = !['/cart', '/checkout', "/favorites", "/contact"].includes(pathname);
 
   const colors = {
     primary: darkMode ? 'text-[#F5F2F4]' : 'text-[#465542]',
@@ -111,113 +111,139 @@ export default function Navbar() {
     <>
       <nav className={`${darkMode ? 'bg-[#1A1A1A]' : 'bg-[#F5F2F4]'} shadow px-6 py-4 sticky top-0 z-50`}>
         {isMobile ? (
-          <>
-            <div className="flex justify-center mb-2">
-              <a
-                href="/"
-                className={`${colors.primary} font-bold text-2xl transition ${pathname === '/' ? colors.primaryHover + ' font-extrabold' : colors.primaryHover
-                  }`}
-              >
-                🛍️ Hussein's Shop
-              </a>
+<>
+  <div className="flex justify-center mb-2">
+    <a
+      href="/"
+      className={`${colors.primary} font-bold text-2xl transition ${
+        pathname === '/' ? colors.primaryHover + ' font-extrabold' : colors.primaryHover
+      }`}
+    >
+      🛍️ Hussein's Shop
+    </a>
+  </div>
+
+  <div className="flex justify-around items-center mb-2">
+    {showSearchBar && (
+      <button
+        onClick={toggleMobileSearch}
+        aria-label="Search"
+        className={`${colors.primaryHover} text-2xl p-2`}
+      >
+        <FaSearch />
+      </button>
+    )}
+
+    <Link
+      to="/cart"
+      className={`relative ${colors.gray} transition ${
+        pathname === '/cart' ? colors.yellow : ''
+      } hover:text-[#a0a21a] font-semibold text-2xl`}
+      aria-label="Cart"
+    >
+      <FaShoppingCart />
+      {uniqueProductsCount > 0 && (
+        <span className="absolute -top-3 -right-3 bg-[#C2B823] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+          {uniqueProductsCount}
+        </span>
+      )}
+    </Link>
+
+    <Link
+      to="/favorites"
+      className={`relative ${colors.gray} transition ${
+        pathname === '/favorites' ? colors.pink : ''
+      } hover:text-[#a6213f] font-semibold text-2xl`}
+      aria-label="Favorites"
+    >
+      <FaHeart />
+      {favoritesCount > 0 && (
+        <span className="absolute -top-3 -right-3 bg-[#DA2B50] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+          {favoritesCount}
+        </span>
+      )}
+    </Link>
+
+    <Link
+      to="/contact"
+      className={`relative ${colors.gray} transition ${
+        pathname === '/contact' ? colors.primary : colors.grayHover
+      } font-semibold text-2xl`}
+      aria-label="Contact"
+    >
+      <FaEnvelope />
+    </Link>
+
+    {user ? (
+      <div className="relative user-menu">
+        <button
+          onClick={() => setUserMenuOpen(!userMenuOpen)}
+          className="bg-[#C2B823] text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold cursor-pointer select-none"
+          aria-label="User menu"
+          aria-expanded={userMenuOpen}
+        >
+          {getInitials(user)}
+        </button>
+
+        {userMenuOpen && (
+          <div
+            className={`absolute right-0 mt-2 w-40 ${
+              darkMode ? 'bg-[#2D2D2D]' : 'bg-white'
+            } rounded-md shadow-lg py-1 z-50`}
+          >
+            <div
+              className={`px-4 py-2 text-sm ${
+                darkMode ? 'text-[#F5F2F4]' : 'text-[#465542]'
+              } border-b ${darkMode ? 'border-[#3D3D3D]' : 'border-gray-200'}`}
+            >
+              {user.displayName || user.email}
             </div>
 
-            <div className="flex justify-around items-center mb-2">
-              {showSearchBar && (
-                <button
-                  onClick={toggleMobileSearch}
-                  aria-label="Search"
-                  className={`${colors.primaryHover} text-2xl p-2`}
-                >
-                  <FaSearch />
-                </button>
-              )}
+            <button
+              onClick={() => {
+                setShowLogoutModal(true);
+                setUserMenuOpen(false);
+              }}
+              className={`block w-full text-left px-4 py-2 text-sm ${
+                darkMode
+                  ? 'text-[#F5F2F4] hover:bg-[#3D3D3D]'
+                  : 'text-[#465542] hover:bg-[#F5F2F4]'
+              } flex items-center gap-2`}
+            >
+              <FaSignOutAlt size={14} />
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+    ) : (
+      <Link
+        to="/login"
+        className={`flex items-center justify-center ${colors.gray} font-semibold transition hover:text-[#465542]`}
+        aria-label="Login"
+      >
+        <div className="bg-[#C2B823] text-white rounded-full w-8 h-8 flex items-center justify-center">
+          <FaUser size={14} />
+        </div>
+      </Link>
+    )}
 
-              <Link
-                to="/cart"
-                className={`relative ${colors.gray} transition ${pathname === '/cart' ? colors.yellow : ''
-                  } hover:text-[#a0a21a] font-semibold text-2xl`}
-                aria-label="Cart"
-              >
-                <FaShoppingCart />
-                {uniqueProductsCount > 0 && (
-                  <span className="absolute -top-3 -right-3 bg-[#C2B823] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                    {uniqueProductsCount}
-                  </span>
-                )}
-              </Link>
+    <button
+      onClick={handleToggleDarkMode}
+      aria-label="Toggle Dark/Light mode"
+      className={`${colors.primaryHover} text-2xl p-2`}
+    >
+      {darkMode ? <FaSun /> : <FaMoon />}
+    </button>
+  </div>
 
-              <Link
-                to="/favorites"
-                className={`relative ${colors.gray} transition ${pathname === '/favorites' ? colors.pink : ''
-                  } hover:text-[#a6213f] font-semibold text-2xl`}
-                aria-label="Favorites"
-              >
-                <FaHeart />
-                {favoritesCount > 0 && (
-                  <span className="absolute -top-3 -right-3 bg-[#DA2B50] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                    {favoritesCount}
-                  </span>
-                )}
-              </Link>
+  {showMobileSearch && showSearchBar && (
+    <div className="mb-4 px-2">
+      <SearchBar isMobile={true} toggleSearch={showMobileSearch} darkMode={darkMode} />
+    </div>
+  )}
+</>
 
-              {user ? (
-                <div className="relative user-menu">
-                  <button
-                    onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="bg-[#C2B823] text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold cursor-pointer select-none"
-                    aria-label="User menu"
-                    aria-expanded={userMenuOpen}
-                  >
-                    {getInitials(user)}
-                  </button>
-
-                  {userMenuOpen && (
-                    <div className={`absolute right-0 mt-2 w-40 ${darkMode ? 'bg-[#2D2D2D]' : 'bg-white'} rounded-md shadow-lg py-1 z-50`}>
-                      <div className={`px-4 py-2 text-sm ${darkMode ? 'text-[#F5F2F4]' : 'text-[#465542]'} border-b ${darkMode ? 'border-[#3D3D3D]' : 'border-gray-200'}`}>
-                        {user.displayName || user.email}
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          setShowLogoutModal(true);
-                          setUserMenuOpen(false);
-                        }}
-                        className={`block w-full text-left px-4 py-2 text-sm ${darkMode ? 'text-[#F5F2F4] hover:bg-[#3D3D3D]' : 'text-[#465542] hover:bg-[#F5F2F4]'} flex items-center gap-2`}
-                      >
-                        <FaSignOutAlt size={14} />
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  to="/login"
-                  className={`flex items-center justify-center ${colors.gray} font-semibold transition hover:text-[#465542]`}
-                  aria-label="Login"
-                >
-                  <div className="bg-[#C2B823] text-white rounded-full w-8 h-8 flex items-center justify-center">
-                    <FaUser size={14} />
-                  </div>
-                </Link>
-              )}
-
-              <button
-                onClick={handleToggleDarkMode}
-                aria-label="Toggle Dark/Light mode"
-                className={`${colors.primaryHover} text-2xl p-2`}
-              >
-                {darkMode ? <FaSun /> : <FaMoon />}
-              </button>
-            </div>
-
-            {showMobileSearch && showSearchBar && (
-              <div className="mb-4 px-2">
-                <SearchBar isMobile={true} toggleSearch={showMobileSearch} darkMode={darkMode} />
-              </div>
-            )}
-          </>
         ) : (
           <div className="flex flex-row justify-between items-center">
             <Link

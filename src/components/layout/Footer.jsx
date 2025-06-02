@@ -102,24 +102,27 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4  hidden md:block">
             <h3 className={`text-lg font-semibold border-b ${darkMode ? 'border-[#3D3D3D]' : 'border-[#465542]'} pb-2`}>Shop</h3>
             <ul className="space-y-2">
               {renderLinks(shopLinks, hoveredShop, setHoveredShop)}
             </ul>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4  hidden md:block">
             <h3 className={`text-lg font-semibold border-b ${darkMode ? 'border-[#3D3D3D]' : 'border-[#465542]'} pb-2`}>Help</h3>
             <ul className="space-y-2">
               {renderLinks(helpLinks, hoveredHelp, setHoveredHelp)}
             </ul>
           </div>
-          <div className="space-y-4">
-            <h3 className={`text-lg font-semibold border-b ${darkMode ? 'border-[#3D3D3D]' : 'border-[#465542]'} pb-2`}>Company</h3>
+          <div className="space-y-4  hidden md:block">
+            <h3 className={`text-lg font-semibold border-b ${darkMode ? 'border-[#3D3D3D]' : 'border-[#465542]'} pb-2`}>
+              Company
+            </h3>
             <ul className="space-y-2">
               {renderLinks(companyLinks, hoveredCompany, setHoveredCompany)}
             </ul>
           </div>
+
         </div>
 
         <div className={`border-t ${darkMode ? 'border-[#3D3D3D]' : 'border-[#465542]'} pt-6`}>
